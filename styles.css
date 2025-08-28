@@ -4,24 +4,28 @@
 
 body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: #001B2B;
 }
 
-.header {
+/* HEADER */
+header {
     position: fixed;   /* keeps it in place */
     top: 0;
     left: 0;
     width: 100%;
     z-index: 1000;     /* ensure it stays above other content */
     display: grid;
-    background-color: #A61651;
+    background-color: #0E3D8B;
     justify-items: center;
     align-items: center;
     grid-template-columns: auto auto auto;
 }
 
-.header p {
+header p {
     text-align: center;
     color: #FFFFFF;
+    font-size: 130%;
+    margin: 10px;
 }
 
 #h_sidebutton {
@@ -32,4 +36,21 @@ body {
 #h_login {
     margin-right: 20px;
     justify-self: right;
+}
+
+/* PAGE CONTENT */
+
+main {
+    margin-top: 45px;
+    float: left;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.cell {
+    border: 1px solid #FFFFFF;
 }
