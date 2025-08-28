@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.header {
+    display: grid;
+    background-color: #A61651;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: auto auto auto;
+}
+
+.header p {
+    text-align: center;
+    color: #FFFFFF;
+}
+
+#h_sidebutton {
+    margin-left: 20px;
+    justify-self: left;
+}
+
+#h_login {
+    margin-right: 20px;
+    justify-self: right;
+}
