@@ -7,6 +7,11 @@ body {
 }
 
 .header {
+    position: fixed;   /* keeps it in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;     /* ensure it stays above other content */
     display: grid;
     background-color: #A61651;
     justify-items: center;
