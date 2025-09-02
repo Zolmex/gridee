@@ -6,7 +6,9 @@ function openPost(postId) { // Runs from listado_posts.html
   frame.style.display = "block"; // Make frame visible
 
   const frameDoc = frame.contentDocument || frame.contentWindow.document; // Get iframe's document
-  // TODO: Update frame's info with the post's title and body
+  frameDoc.getElementById("h_title").innerHTML = postTitle;
+  frameDoc.getElementById("m_body").innerHTML = postBody;
+  // TODO: author and date
 }
 
 function closePost() { // Runs from post.html
