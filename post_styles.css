@@ -13,16 +13,30 @@ main {
     width: 200px;
     border: 1px solid white;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
 }
 
-.cell p {
-    padding: none;
-    margin: none;
+.cell_title, .cell_body {
+    padding: 0px;
+    margin: 0px;
     text-align: center;
-    font-size: 145%;
-    white-space: nowrap;
-    margin-left: 5%;
+    word-wrap: break-word;
+    max-height: 30%;
     max-width: 90%;
     overflow: hidden;
-    text-overflow:ellipsis;
+}
+
+.cell_title {
+    font-size: 145%;
+}
+
+.cell_body {
+    
+}
+
+.cell button {
+    width: auto;
 }
