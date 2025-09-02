@@ -1,0 +1,11 @@
+* {
+    box-sizing: border-box;
+}
+
+p {
+    color: white;
+}
+
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}

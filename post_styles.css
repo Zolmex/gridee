@@ -1,0 +1,28 @@
+@import url("generic.css");
+
+main {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap:10px;
+}
+
+.cell {
+    height: 200px;
+    width: 200px;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+.cell p {
+    padding: none;
+    margin: none;
+    text-align: center;
+    font-size: 145%;
+    white-space: nowrap;
+    margin-left: 5%;
+    max-width: 90%;
+    overflow: hidden;
+    text-overflow:ellipsis;
+}
