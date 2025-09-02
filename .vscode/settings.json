@@ -1,0 +1,14 @@
+{
+    "auto-version-increment.version.file": [
+
+
+        {
+            "path": "index.html",
+            "prefix": "<p>v",
+            "sufix": "</p>",
+            "primary": true,
+            "useWorkspacePath": true
+        }
+    ],
+    "auto-version-increment.update.onSave": "Build Number"
+}
