@@ -43,11 +43,22 @@ header p {
 
 /* PAGE CONTENT */
 
-#listado_posts {
+main {
     margin-top: 52px;
-    float: left;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#listado_posts {
+    border: none;
+    flex: 1;
+}
+
+#post_frame {
     flex: 1;
     border: none;
+    display: none; /* hidden by default */
 }
 
 /* FOOTER */

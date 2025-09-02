@@ -1,0 +1,42 @@
+@import url("generic.css");
+
+main {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap:10px;
+}
+
+.cell {
+    height: 200px;
+    width: 200px;
+    border: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.cell_title, .cell_body {
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+    word-wrap: break-word;
+    max-height: 30%;
+    max-width: 90%;
+    overflow: hidden;
+}
+
+.cell_title {
+    font-size: 145%;
+}
+
+.cell_body {
+    font-size: 90%;
+}
+
+.cell button {
+    width: auto;
+}
