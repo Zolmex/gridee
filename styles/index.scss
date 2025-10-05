@@ -12,7 +12,9 @@ header {
     justify-content: space-between;
     background-color: $background-color-light;
     img {
+        margin: 5px;
         max-width: 80px;
+        max-height: 70px;
     }
 }
 
@@ -36,4 +38,57 @@ header {
         style: none;
         radius: 10px;
     }
+}
+
+/* MAIN CONTENT */
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
+    justify-content: center;
+    gap: 15px;
+}
+
+article {
+    background-color: $background-color-light;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.post-title {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    min-height: 80px;
+    border-radius: 7px;
+    p {
+        color: white;
+        font-size: 110%;
+        position: absolute;
+        bottom: 5px;
+        left: 5px;
+        margin: 0;
+        text-shadow: 0px 0px 5px black;
+    }
+}
+
+.post-body {
+    display: grid;
+    gap: 10px;
+}
+
+.post-author-details {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    gap: 15px;
+    align-items: center;
+    img {
+        border-radius: 25px;
+    }
+}
+
+.post-reactions {
+    display: grid;
+    justify-content: center;
 }
