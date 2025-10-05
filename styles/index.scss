@@ -3,30 +3,26 @@
 /* HEADER */
 
 header {
+    width: 100%;
+    margin-bottom: 10px;
+    box-shadow: 0px -5px 15px #090A0C;
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: auto auto auto;
     align-items: center;
-}
-
-header {
+    justify-content: space-between;
+    background-color: $background-color-light;
     img {
-        min-width: 50px;
         max-width: 80px;
     }
 }
 
-header {
-    div {
-        input,
-        button {
-            min-height: 25px;
-        }
-    }
+.h-search, .h-signin {
+    min-height: 25px;
 }
 
-.h-search * {
+.h-search {
     outline: none;
-    background: #30363F;
+    background: $background-color-light2;
     border: {
         style: none;
         radius: 7px;
@@ -35,6 +31,7 @@ header {
 
 .h-signin {
     min-width: 60px;
+    margin-right: 5px;
     border: {
         style: none;
         radius: 10px;

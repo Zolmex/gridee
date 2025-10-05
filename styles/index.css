@@ -15,6 +15,7 @@ html {
 }
 
 body {
+  height: 100%;
   font-family: "Inter";
   color: #E5F0FF;
   background-color: #22272E;
@@ -41,34 +42,41 @@ input {
 
 /* HEADER */
 header {
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-box-shadow: 0px -5px 15px #090A0C;
+          box-shadow: 0px -5px 15px #090A0C;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: auto 1fr auto;
-      grid-template-columns: auto 1fr auto;
+  -ms-grid-columns: auto auto auto;
+      grid-template-columns: auto auto auto;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  background-color: #292E35;
 }
 
 header img {
-  min-width: 50px;
   max-width: 80px;
 }
 
-header div input,
-header div button {
+.h-search, .h-signin {
   min-height: 25px;
 }
 
-.h-search * {
+.h-search {
   outline: none;
-  background: #30363F;
+  background: #3A424C;
   border-style: none;
   border-radius: 7px;
 }
 
 .h-signin {
   min-width: 60px;
+  margin-right: 5px;
   border-style: none;
   border-radius: 10px;
 }
