@@ -3,6 +3,7 @@
 body {
     display: flex;
     flex-direction: column;
+    gap:10px;
 }
 
 /* HEADER */
@@ -19,6 +20,7 @@ header {
     align-items: center;
     justify-content: space-between;
     background-color: $background-color-light;
+
     img {
         margin: 5px;
         max-width: 80px;
@@ -26,35 +28,50 @@ header {
     }
 }
 
-.h-search, .h-signin {
+.h-search,
+.h-signin {
     min-height: 25px;
 }
 
 .h-search {
     outline: none;
     background: $background-color-light2;
+
     border: {
         style: none;
         radius: 7px;
     }
+
+    transition: all 0.3s ease;
+}
+
+.h-search::placeholder {
+    color: #aaa;
+}
+
+.h-search:focus {
+    box-shadow: 0 0 8px 3px $background-color;
 }
 
 .h-signin {
     min-width: 60px;
     margin-right: 5px;
     background: linear-gradient(135deg, #91A6C6, #BAD5FF);
+
     border: {
         style: none;
         radius: 10px;
     }
+
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .h-signin:hover {
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 120, 255, 0.3);
-  }
+}
 
 /* MAIN CONTENT */
 
@@ -86,6 +103,7 @@ article {
     overflow: hidden;
     min-height: 80px;
     border-radius: 7px;
+
     p {
         color: white;
         font-size: 120%;
@@ -108,6 +126,7 @@ article {
     gap: 15px;
     align-items: center;
     font-size: 90%;
+
     img {
         border-radius: 25px;
     }
@@ -122,4 +141,18 @@ article {
 /* FOOTER */
 
 footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    font-size: 85%;
+    div {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 20px;
+    }
+    p {
+        color: $text-color-grey;
+    }
 }
