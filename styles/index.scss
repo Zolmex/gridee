@@ -1,8 +1,16 @@
 @import "reset";
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 /* HEADER */
 
 header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
     width: 100%;
     margin-bottom: 10px;
     box-shadow: 0px -5px 15px #090A0C;
@@ -14,7 +22,7 @@ header {
     img {
         margin: 5px;
         max-width: 80px;
-        max-height: 70px;
+        max-height: 60px;
     }
 }
 
@@ -34,15 +42,27 @@ header {
 .h-signin {
     min-width: 60px;
     margin-right: 5px;
+    background: linear-gradient(135deg, #91A6C6, #BAD5FF);
     border: {
         style: none;
         radius: 10px;
     }
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
+.h-signin:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 120, 255, 0.3);
+  }
 
 /* MAIN CONTENT */
 
 main {
+    flex: 1;
+}
+
+.article-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 400px));
     justify-content: center;
@@ -53,6 +73,10 @@ article {
     background-color: $background-color-light;
     padding: 10px;
     border-radius: 7px;
+    max-height: 300px;
+    display: grid;
+    grid-template-rows: auto auto;
+    gap: 10px;
 }
 
 .post-title {
@@ -64,7 +88,7 @@ article {
     border-radius: 7px;
     p {
         color: white;
-        font-size: 110%;
+        font-size: 120%;
         position: absolute;
         bottom: 5px;
         left: 5px;
@@ -75,7 +99,7 @@ article {
 
 .post-body {
     display: grid;
-    gap: 10px;
+    gap: 6px;
 }
 
 .post-author-details {
@@ -83,6 +107,7 @@ article {
     grid-template-columns: 50px 1fr;
     gap: 15px;
     align-items: center;
+    font-size: 90%;
     img {
         border-radius: 25px;
     }
@@ -91,4 +116,10 @@ article {
 .post-reactions {
     display: grid;
     justify-content: center;
+    font-size: 80%;
+}
+
+/* FOOTER */
+
+footer {
 }
