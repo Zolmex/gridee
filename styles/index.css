@@ -36,4 +36,39 @@ button {
 
 input {
   font-family: inherit;
+  color: #E5F0FF;
+}
+
+/* HEADER */
+header {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto 1fr auto;
+      grid-template-columns: auto 1fr auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header img {
+  min-width: 50px;
+  max-width: 80px;
+}
+
+header div input,
+header div button {
+  min-height: 25px;
+}
+
+.h-search * {
+  outline: none;
+  background: #30363F;
+  border-style: none;
+  border-radius: 7px;
+}
+
+.h-signin {
+  min-width: 60px;
+  border-style: none;
+  border-radius: 10px;
 }

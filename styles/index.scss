@@ -1,1 +1,42 @@
 @import "reset";
+
+/* HEADER */
+
+header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+}
+
+header {
+    img {
+        min-width: 50px;
+        max-width: 80px;
+    }
+}
+
+header {
+    div {
+        input,
+        button {
+            min-height: 25px;
+        }
+    }
+}
+
+.h-search * {
+    outline: none;
+    background: #30363F;
+    border: {
+        style: none;
+        radius: 7px;
+    }
+}
+
+.h-signin {
+    min-width: 60px;
+    border: {
+        style: none;
+        radius: 10px;
+    }
+}
