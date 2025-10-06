@@ -40,6 +40,22 @@ input {
   color: #E5F0FF;
 }
 
+@media (max-width: 650px) {
+  .create-post-btn {
+    padding: 0.9rem;
+    border-radius: 50%;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+  .create-post-btn span {
+    display: none;
+  }
+  .create-post-btn svg {
+    margin: 0;
+  }
+}
+
 body {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -227,6 +243,50 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 80%;
+}
+
+.create-post-btn {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  border-radius: 9999px;
+  padding: 0.9rem 1.4rem;
+  font-size: 1rem;
+  font-weight: 500;
+  -webkit-box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+          box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  -webkit-transition: all 0.25s ease;
+  transition: all 0.25s ease;
+  z-index: 9999;
+}
+
+.create-post-btn svg {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.create-post-btn:hover {
+  -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+  -webkit-box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+          box-shadow: 0 6px 25px rgba(0, 0, 0, 0.35);
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.create-post-btn:active {
+  -webkit-transform: scale(0.98);
+          transform: scale(0.98);
 }
 
 /* FOOTER */
