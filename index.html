@@ -11,7 +11,10 @@
 
 <body>
     <header class="site-header">
-        <img src="images/logo-full.png" alt="Gridee logo">
+        <div class="h-side-container">
+            <button class="h-side-btn" aria-label="Toggle Sidebar">☰</button>
+            <img src="images/logo-full.png" alt="Gridee logo">
+        </div>
         <div>
             <input class="h-search" type="text" placeholder="Search...">
         </div>
@@ -19,6 +22,16 @@
             <button class="h-signin">Sign in</button>
         </div>
     </header>
+    <div class="side-menu-wrapper">
+        <aside class="side-menu">
+            <div class="side-menu-grid">
+                <div>
+
+                </div>
+            </div>
+        </aside>
+        <div class="side-menu-overlay"></div>
+    </div>
     <main class="main-content">
         <div class="article-grid">
             <article class="post-card">

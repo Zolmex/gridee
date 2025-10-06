@@ -1,15 +1,21 @@
 @media (max-width: 650px) {
     .create-post-btn {
-      padding: 0.9rem;
-      border-radius: 50%;
-      justify-content: center;
-  
-      span {
-        display: none;
-      }
-  
-      svg {
-        margin: 0;
-      }
+        padding: 0.9rem;
+        border-radius: 50%;
+        justify-content: center;
+
+        span {
+            display: none;
+        }
+
+        svg {
+            margin: 0;
+        }
     }
-  }
+}
+
+@media (max-width: 500px) {
+    .h-side-container img {
+        display: none;
+    }
+}
