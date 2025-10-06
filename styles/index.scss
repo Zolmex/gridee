@@ -8,7 +8,7 @@ body {
 
 /* HEADER */
 
-header {
+.site-header {
     position: sticky;
     top: 0;
     z-index: 100;
@@ -75,7 +75,7 @@ header {
 
 /* MAIN CONTENT */
 
-main {
+.main-content {
     flex: 1;
 }
 
@@ -86,7 +86,7 @@ main {
     gap: 15px;
 }
 
-article {
+.post-card {
     background-color: $background-color-light;
     padding: 10px;
     border-radius: 7px;
@@ -100,7 +100,7 @@ article {
     cursor: pointer;
 }
 
-article:hover {
+.post-card:hover {
     transform: translateY(-5px) scale(1.02);
     box-shadow: 0 8px 20px #3A424C;
 }

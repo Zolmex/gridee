@@ -52,7 +52,7 @@ body {
 }
 
 /* HEADER */
-header {
+.site-header {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
@@ -74,7 +74,7 @@ header {
   background-color: #292E35;
 }
 
-header img {
+.site-header img {
   margin: 5px;
   max-width: 80px;
   max-height: 60px;
@@ -136,7 +136,7 @@ header img {
 }
 
 /* MAIN CONTENT */
-main {
+.main-content {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -153,7 +153,7 @@ main {
   gap: 15px;
 }
 
-article {
+.post-card {
   background-color: #292E35;
   padding: 10px;
   border-radius: 7px;
@@ -172,7 +172,7 @@ article {
   cursor: pointer;
 }
 
-article:hover {
+.post-card:hover {
   -webkit-transform: translateY(-5px) scale(1.02);
           transform: translateY(-5px) scale(1.02);
   -webkit-box-shadow: 0 8px 20px #3A424C;
