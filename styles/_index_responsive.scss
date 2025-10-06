@@ -18,4 +18,15 @@
     .h-side-container img {
         display: none;
     }
+
+    .side-menu, .side-menu-grid {
+        width: fit-content !important;
+    }
+
+    .side-menu-link {
+        width: fit-content;
+        p {
+            display: none;
+        }
+    }
 }

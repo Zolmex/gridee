@@ -118,7 +118,7 @@ body {
     left: -250px;
     width: 250px;
     height: 100vh;
-    background-color: $background-color-dark;
+    background-color: $background-color;
     color: $text-color;
     padding: 1.5rem;
     display: flex;
@@ -134,6 +134,52 @@ body {
     background: rgba(0, 0, 0, 0.4);
     opacity: 0;
     transition: opacity 0.3s ease;
+}
+
+.side-menu-grid {
+    margin-top: 40px;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.side-menu-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background: $background-color-light2;
+    border-radius: 5px;
+    padding: 5px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 0 7px rgba(255, 255, 255, 0.10);
+        svg, button {
+            transform: scale(1.08);
+        }
+    }
+
+    svg {
+        width: 1.6rem;
+        height: 1.6rem;
+        fill: $text-color;
+        margin-left: 0.4rem;
+        margin-right: 0.4rem;
+        transition: all 0.4s ease;
+    }
+
+    p {
+        flex: 1;
+        height: 100%;
+        color: $text-color;
+        font-size: 1.1rem;
+        font-family: 'Open Sans';
+        transition: all 0.4s ease;
+        text-align: center;
+    }
 }
 
 /* MAIN CONTENT */
@@ -232,6 +278,7 @@ body {
     svg {
         width: 1.4rem;
         height: 1.4rem;
+        fill: $text-color;
     }
 
     &:hover {
