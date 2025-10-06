@@ -160,9 +160,23 @@ article {
   max-height: 300px;
   display: -ms-grid;
   display: grid;
+  position: relative;
+  overflow: hidden;
   -ms-grid-rows: auto auto;
       grid-template-rows: auto auto;
   gap: 10px;
+  -webkit-transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, -webkit-transform 0.3s ease, -webkit-box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+article:hover {
+  -webkit-transform: translateY(-5px) scale(1.02);
+          transform: translateY(-5px) scale(1.02);
+  -webkit-box-shadow: 0 8px 20px #3A424C;
+          box-shadow: 0 8px 20px #3A424C;
 }
 
 .post-title {
