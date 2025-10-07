@@ -253,7 +253,7 @@ body {
 .draft-panel-header svg {
   width: 2rem;
   height: 2rem;
-  fill: #001d3d;
+  fill: #9FB4CE;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
 }
@@ -339,6 +339,7 @@ body {
 
 .draft-panel-title-input-container a {
   font-size: 0.9rem;
+  color: #9FB4CE;
 }
 
 .draft-panel-banner-input {

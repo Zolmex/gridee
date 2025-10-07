@@ -43,7 +43,7 @@ body {
     svg {
         width: 2rem;
         height: 2rem;
-        fill: #001d3d;
+        fill: $background-color-light3;
         transition: all 0.3s ease;
 
         &:hover {
@@ -97,6 +97,7 @@ body {
 
     a {
         font-size: 0.9rem;
+        color: $background-color-light3;
     }
 }
 
