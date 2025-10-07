@@ -4,5 +4,4 @@ function setup() {
     listenHome(); // Home button listener
 }
 
-
 setup();

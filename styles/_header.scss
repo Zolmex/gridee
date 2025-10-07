@@ -49,12 +49,11 @@
     min-width: 60px;
     margin-right: 5px;
     background: linear-gradient(135deg, #5f94eb, #4179f3);
-
+    color: white;
     border: {
         style: none;
         radius: 10px;
     }
-
     cursor: pointer;
     transition: transform 0.2s ease,
     box-shadow 0.2s ease;

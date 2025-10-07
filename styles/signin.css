@@ -112,6 +112,7 @@ input {
   min-width: 60px;
   margin-right: 5px;
   background: linear-gradient(135deg, #5f94eb, #4179f3);
+  color: white;
   border-style: none;
   border-radius: 10px;
   cursor: pointer;
