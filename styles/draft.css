@@ -257,6 +257,7 @@ body {
   fill: #9FB4CE;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+  cursor: pointer;
 }
 
 .draft-panel-header svg:hover {
