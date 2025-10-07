@@ -10,6 +10,103 @@ body {
 
 /* MAIN CONTENT */
 
-.main-content {
+.login-content {
     flex: 1;
+}
+
+.login-panel-container {
+    display: grid;
+    grid-template-rows: auto auto;
+    justify-items: center;
+    gap: 40px;
+}
+
+.login-panel-header {
+    display: grid;
+    grid-template-rows: auto auto;
+    place-items: center;
+    gap: 20px;
+
+    img {
+        max-width: 10rem;
+    }
+
+    p {
+        font-size: 1.7rem;
+        color: white;
+        text-shadow: 0 0 15px rgba(0, 0, 0, 1);
+        font-weight: bold;
+    }
+}
+
+.login-panel {
+    display: grid;
+    grid-template-rows: auto auto;
+    place-items: center;
+    gap: 25px;
+    background: linear-gradient(180deg, #324b86 0%, #293c68 50%);
+    border-radius: 5px;
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.5);
+    padding: 1.5rem;
+}
+
+.login-panel-input-grid {
+    justify-self: left;
+    display: grid;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+
+    input {
+        border: none;
+        outline: none;
+        background: none;
+
+        &::placeholder {
+            color: $text-color-grey;
+        }
+    }
+}
+
+.login-panel-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    a {
+        font-size: 0.9rem;
+        text-decoration: underline;
+    }
+}
+
+.login-panel-signin-button {
+    padding: 1rem;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(120deg,#315ea1, #3378c7);
+    color: $text-color;
+    font-weight: bold;
+    font-size: 1.02rem;
+    transition: background-color 0.3s linear;
+    cursor: pointer;
+
+    &:hover {
+        background: linear-gradient(120deg,#3a6db9, #3b8be6);
+    }
+}
+
+.login-panel-input-field-username,
+.login-panel-input-field-password {
+    display: flex;
+    place-items: center;
+    border: solid 1px $background-color-dark;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    padding: 0.5rem;
+
+    svg {
+        width: 1.4rem;
+        height: 1.4rem;
+    }
 }
