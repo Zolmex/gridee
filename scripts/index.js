@@ -76,6 +76,11 @@ var posts = [];
 
 function loadPosts() {
     // Simulate fetching the posts from server
+    const storagePosts = JSON.parse(localStorage.getItem('posts')) || [];
+    console.info(localStorage.getItem('posts'));
+    if (storagePosts){
+        storagePosts.forEach(post => posts.push(post));
+    }
     postExamples.forEach(post => posts.push(post));
 }
 
