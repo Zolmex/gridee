@@ -7,6 +7,7 @@ function setup() {
     const sideMenuBtn = document.querySelector('.h-side-btn');
     const sideMenuWrapper = document.querySelector('.side-menu-wrapper');
     const overlay = document.querySelector('.side-menu-overlay');
+    const createPostBtn = document.querySelector('.create-post-btn');
 
     sideMenuBtn.addEventListener('click', () => {
         sideMenuWrapper.classList.toggle('active');
@@ -14,6 +15,10 @@ function setup() {
 
     overlay.addEventListener('click', () => {
         sideMenuWrapper.classList.toggle('active');
+    });
+
+    createPostBtn.addEventListener('click', () => {
+        window.location.href = "/pages/draft.html";
     });
 }
 
