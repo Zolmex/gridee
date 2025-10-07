@@ -1,0 +1,20 @@
+@import 'global';
+
+footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+    font-size: 85%;
+
+    div {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 20px;
+    }
+
+    p {
+        color: $text-color-grey;
+    }
+}

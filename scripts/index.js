@@ -1,11 +1,26 @@
-const sideMenuBtn = document.querySelector('.h-side-btn');
-const sideMenuWrapper = document.querySelector('.side-menu-wrapper');
-const overlay = document.querySelector('.side-menu-overlay');
+import { listenHome } from "./homeButton.js";
 
-sideMenuBtn.addEventListener('click', () => {
-    sideMenuWrapper.classList.toggle('active');
-});
+function setup() {
+    listenHome(); // Home button listener
+    setupLogin(); // Setup login listener
+    
+    const sideMenuBtn = document.querySelector('.h-side-btn');
+    const sideMenuWrapper = document.querySelector('.side-menu-wrapper');
+    const overlay = document.querySelector('.side-menu-overlay');
 
-overlay.addEventListener('click', () => {
-    sideMenuWrapper.classList.toggle('active');
-});
+    sideMenuBtn.addEventListener('click', () => {
+        sideMenuWrapper.classList.toggle('active');
+    });
+
+    overlay.addEventListener('click', () => {
+        sideMenuWrapper.classList.toggle('active');
+    });
+}
+
+function setupLogin() {
+    document.getElementById('signin-btn').addEventListener("click", () => {
+        window.location.href = "/pages/signin.html";
+    });
+}
+
+setup();

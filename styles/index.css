@@ -80,18 +80,6 @@ input {
   }
 }
 
-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  gap: 10px;
-}
-
-/* HEADER */
 .site-header {
   position: -webkit-sticky;
   position: sticky;
@@ -158,7 +146,7 @@ body {
 .h-signin {
   min-width: 60px;
   margin-right: 5px;
-  background: linear-gradient(135deg, #91A6C6, #BAD5FF);
+  background: linear-gradient(135deg, #5f94eb, #4179f3);
   border-style: none;
   border-radius: 10px;
   cursor: pointer;
@@ -184,6 +172,10 @@ body {
           align-items: center;
 }
 
+.h-side-container img {
+  cursor: pointer;
+}
+
 .h-side-btn {
   margin-left: 10px;
   background: none;
@@ -200,6 +192,46 @@ body {
 .h-side-btn:hover {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
+}
+
+footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 10px;
+  font-size: 85%;
+}
+
+footer div {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: auto auto auto auto;
+      grid-template-columns: auto auto auto auto;
+  gap: 20px;
+}
+
+footer p {
+  color: #B0B9C4;
+}
+
+body {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 10px;
 }
 
 /* SIDE MENU */
@@ -229,8 +261,8 @@ body {
 .side-menu {
   position: fixed;
   top: 0;
-  left: -250px;
-  width: 250px;
+  left: -220px;
+  width: 220px;
   height: 100vh;
   background-color: #22272E;
   color: #E5F0FF;
@@ -458,34 +490,4 @@ body {
 .create-post-btn:active {
   -webkit-transform: scale(0.98);
           transform: scale(0.98);
-}
-
-/* FOOTER */
-footer {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  gap: 10px;
-  font-size: 85%;
-}
-
-footer div {
-  display: -ms-grid;
-  display: grid;
-  -ms-grid-columns: auto auto auto auto;
-      grid-template-columns: auto auto auto auto;
-  gap: 20px;
-}
-
-footer p {
-  color: #B0B9C4;
 }

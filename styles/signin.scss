@@ -1,0 +1,15 @@
+@import "reset";
+@import "header";
+@import "footer";
+
+body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    flex: 1;
+}
