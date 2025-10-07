@@ -8,6 +8,7 @@ function setup() {
     const sideMenuWrapper = document.querySelector('.side-menu-wrapper');
     const overlay = document.querySelector('.side-menu-overlay');
     const createPostBtn = document.querySelector('.create-post-btn');
+    const sideMenuLinks = document.querySelectorAll('.side-menu-link');
 
     sideMenuBtn.addEventListener('click', () => {
         sideMenuWrapper.classList.toggle('active');
@@ -20,6 +21,10 @@ function setup() {
     createPostBtn.addEventListener('click', () => {
         window.location.href = "/pages/draft.html";
     });
+
+    sideMenuLinks.forEach(link => link.addEventListener('click', () => {
+        window.location.href = "/index.html";
+    }))
 }
 
 function setupLogin() {
@@ -77,7 +82,6 @@ var posts = [];
 function loadPosts() {
     // Simulate fetching the posts from server
     const storagePosts = JSON.parse(localStorage.getItem('posts')) || [];
-    console.info(localStorage.getItem('posts'));
     if (storagePosts){
         storagePosts.forEach(post => posts.push(post));
     }
