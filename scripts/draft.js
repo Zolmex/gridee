@@ -1,4 +1,5 @@
 import { listenHome } from "./homeButton.js";
+
 import { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } from '../ckeditor/ckeditor5/ckeditor5.js';
 
 ClassicEditor
