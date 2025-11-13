@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="../ckeditor/ckeditor5/ckeditor5.css">
     <title>Gridee - Draft new post</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -28,19 +30,21 @@
                     </svg>
                 </header>
                 <section class="draft-panel-edit">
-                    <div class="draft-panel-title-input-container">
-                        <input type="text" id="post-title-input" placeholder="Post title...">
-                        <a>Link preview:</a>
-                        <a id="title-link-preview"></a>
-                    </div>
-                    <button class="draft-panel-banner-input">+ Add banner image</button>
-                    <div id="editor">
-                        <p>Hello from CKEditor 5!</p>
-                    </div>
-                    <div class="draft-panel-options">
-                        <button class="draft-panel-option-button">Preview</button>
-                        <button class="draft-panel-option-button" id="publish-btn">Publish</button>
-                    </div>
+                    <form action="../server/publish.php" method="POST" enctype="multipart/form-data">
+                        <div class="draft-panel-title-input-container">
+                            <input type="text" id="post-title-input" name="title" placeholder="Post title...">
+                            <a>Link preview:</a>
+                            <a id="title-link-preview"></a>
+                        </div>
+                        <input type="file" id="post-banner-input" name="banner"/>
+                        <input type="hidden" id="post-body-input" name="body"/>
+                        <div id="editor">
+                            <p>Hello from CKEditor 5!</p>
+                        </div>
+                        <div class="draft-panel-options">
+                            <input type="submit" class="draft-panel-option-button" id="publish-btn" value="Publish"/>
+                        </div>
+                    </form>
                 </section>
             </section>
         </div>

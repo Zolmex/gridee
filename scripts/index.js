@@ -19,17 +19,17 @@ function setup() {
     });
 
     createPostBtn.addEventListener('click', () => {
-        window.location.href = "/pages/draft.html";
+        window.location.href = "/pages/draft.php";
     });
 
     sideMenuLinks.forEach(link => link.addEventListener('click', () => {
-        window.location.href = "/index.html";
+        window.location.href = "/index.php";
     }))
 }
 
 function setupLogin() {
     document.getElementById('signin-btn').addEventListener("click", () => {
-        window.location.href = "/pages/signin.html";
+        window.location.href = "/pages/signin.php";
     });
 }
 

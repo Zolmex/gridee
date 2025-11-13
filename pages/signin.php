@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../styles/signin.css">
     <title>Gridee - Sign in</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
