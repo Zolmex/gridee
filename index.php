@@ -3,6 +3,7 @@ date_default_timezone_set('America/Argentina/Buenos_Aires');
 session_start();
 include 'server/logout.php';
 include 'server/conexionbd.php';
+include 'server/util.php';
 
 function cargar_posts()
 {
@@ -25,29 +26,10 @@ function cargar_posts()
         $postBody = html_entity_decode($fila['body'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $bannerPath = $fila['banner_path'];
         $postReactions = $fila['reacciones'];
-
-        $fecha = new DateTime($fila['fecha_hora_alta']);
-        $ahora = new DateTime();
-        $diff = $fecha->diff($ahora);
-
-        $intervalo = 'Hace ';
-
-        if ($diff->y > 0) {
-            $intervalo .= $diff->y . " años";
-        } elseif ($diff->m > 0) {
-            $intervalo .= $diff->m . " meses";
-        } elseif ($diff->d > 0) {
-            $intervalo .= $diff->d . " días";
-        } elseif ($diff->h > 0) {
-            $intervalo .= $diff->h . " horas";
-        } elseif ($diff->i > 0) {
-            $intervalo .= $diff->i . " minutos";
-        } else {
-            $intervalo .= $diff->s . " segundos";
-        }
+        $intervalo = obtenerIntervalo($fila['fecha_hora_alta']);
 
         echo '
-        <article class="post-card">
+        <article id="post-'.$fila["id"].'" class="post-card">
             <header class="post-title" style="background-image: url(\'/server/'.$bannerPath.'\');">
                 <p>'.$postTitle.'</p>
             </header>
