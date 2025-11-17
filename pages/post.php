@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 session_start();
 include '../server/logout.php';
 include '../server/conexionbd.php';
@@ -7,6 +8,20 @@ include '../server/util.php';
 if (!isset($_GET['p'])){
     header('Location: /index.php'); // Redireccionar al index si no se especifico un post
     exit();
+}
+
+if (isset($_GET['react'])) { // Agregar una reaccion al post
+    global $con;
+    conectar('gridee');
+
+    $sql = 'UPDATE post SET reacciones = reacciones + 1 WHERE id = '.htmlspecialchars($_GET['p']).'';
+    $result = $con->query($sql);
+    if ($result) {
+        header('Location: /pages/post.php?p='.htmlspecialchars($_GET['p']));
+        exit();
+    }
+
+    desconectar();
 }
 
 function cargar_post() {
