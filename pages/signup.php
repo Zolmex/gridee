@@ -29,6 +29,7 @@ if (isset($_POST['username'])) {
             $error = "Nombre de usuario duplicado.";
         }
     }
+    desconectar();
 }
 if ($error != '') {
     echo '<script>alert("' . $error . '")</script>';

@@ -426,3 +426,7 @@ body {
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
+
+.ck-editor {
+  margin: 10px 0 10px 0 !important;
+}

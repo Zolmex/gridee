@@ -23,10 +23,9 @@ ClassicEditor
 
 function setup() {
     const backBtn = $('#draft-panel-back-btn');
-    const publishBtn = $('#publish-btn');
     const bannnerInput = $('#post-banner-input');
 
-    bannnerInput.change((event) => {
+    bannnerInput.change((event) => { // Cuando el usuario selecciones una imagen guardamos el archivo en una variable global
         var file = event.target.files[0];
         if (file != null) {
             const reader = new FileReader();
@@ -46,9 +45,13 @@ function setup() {
     backBtn.on('click', () => {
         window.location.href = "/index.php";
     });
-    publishBtn.on('click', submitPost);
+    $('#publish-form').on('submit', submitPost);
 
     listenHome(); // Home button listener
+
+    $('#profile-btn')?.on("click", () => {
+        $('#profile-card').toggle(); // Mostrar/Esconder la tarjeta del perfil del usuario
+    });
 }
 
 function randomInt(min, max) {
@@ -57,7 +60,7 @@ function randomInt(min, max) {
 
 function submitPost() {
     const postBody = window.editor.getData();
-    $('#post-body-input').value = postBody;
+    $('#post-body-input').val(postBody);
 }
 
 setup();

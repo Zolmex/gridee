@@ -1,3 +1,13 @@
+<?php
+session_start();
+include '../server/logout.php';
+
+if (!isset($_SESSION['nombre'])) {
+    echo '<script>alert("No permitido.")</script>';
+    header('Location: /index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -17,7 +27,15 @@
         <div class="h-side-container">
             <img src="../images/logo-full.png" alt="Gridee logo">
         </div>
+        <div>
+            <button id="profile-btn" class="h-signin"><?php echo $_SESSION["nombre"] ?></button>
+        </div>
     </header>
+    <div id="profile-card" class="profile-card">
+        <p>Signed in as <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
+        <hr>
+        <a href="?logout=true">Sign out</a>
+    </div>
     <main class="draft-content">
         <div class="draft-container">
             <section class="draft-panel">
@@ -30,7 +48,7 @@
                     </svg>
                 </header>
                 <section class="draft-panel-edit">
-                    <form action="../server/publish.php" method="POST" enctype="multipart/form-data">
+                    <form id="publish-form" action="../server/publish.php" method="post" enctype="multipart/form-data">
                         <div class="draft-panel-title-input-container">
                             <input type="text" id="post-title-input" name="title" placeholder="Post title...">
                             <a>Link preview:</a>

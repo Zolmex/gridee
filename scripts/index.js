@@ -11,11 +11,11 @@ function setup() {
     const sideMenuLinks = $('.side-menu-link');
 
     sideMenuBtn.on('click', () => {
-        sideMenuWrapper.classList.toggle('active');
+        sideMenuWrapper.toggleClass('active');
     });
 
     overlay.on('click', () => {
-        sideMenuWrapper.classList.toggle('active');
+        sideMenuWrapper.toggleClass('active');
     });
 
     createPostBtn.on('click', () => {

@@ -11,27 +11,30 @@ if (isset($_POST['username'])) {
     $nombre = htmlspecialchars($_POST['username']);
     $clave = htmlspecialchars($_POST['password']);
 
-    $sql = 'SELECT contraseña FROM usuario WHERE nombre LIKE \'' . $nombre . '\'';
+    $sql = 'SELECT contraseña, id FROM usuario WHERE nombre LIKE \'' . $nombre . '\'';
     $result = mysqli_query($con, $sql);
 
     if ($result->num_rows == 0) { // Login fallido
         $error = "Nombre de usuario incorrecto.";
     } else { // Verificar contraseña
-        $clave_hash_usuario = $result->fetch_assoc()["contraseña"];
+        $resultado = $result->fetch_assoc();
+        $clave_hash_usuario = $resultado["contraseña"];
         if (password_verify($clave, $clave_hash_usuario)) {
             $_SESSION["nombre"] = $nombre; // Login exitoso, guardamos los datos del usuario en una sesión nueva
+            $_SESSION["id"] = (int)$resultado["id"];
             $error = "Bienvenido de nuevo " . $nombre . "!";
-            $redirect = "../index.php";
+            $redirect = "/index.php";
         } else {
             $error = "Nombre de usuario o contraseña incorrectos.";
         }
     }
+    desconectar();
 }
 if ($error != '') {
     echo '<script>alert("' . $error . '")</script>';
 }
 if ($redirect != ''){
-    echo '<script>window.location.href = "'.$redirect.'"</script>';
+    header('Location: '.$redirect);
 }
 
 ?>
