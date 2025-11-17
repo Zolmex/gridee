@@ -36,52 +36,6 @@ function setupLogin() {
     });
 }
 
-const postExamples = [
-    {
-        "title": "Building My First Game Engine",
-        "body": "After months of trial and error, I finally got my entity system and renderer working together. Next step: physics!",
-        "date": "2025-10-07T14:32:00Z",
-        "reactions": 128,
-        "author_username": "dev_mat"
-    },
-    {
-        "title": "Dark Mode Complete!",
-        "body": "Finally added dark mode to my portfolio site using CSS variables and prefers-color-scheme. It looks so much cleaner now.",
-        "date": "2025-10-06T19:10:00Z",
-        "reactions": 73,
-        "author_username": "codeflux"
-    },
-    {
-        "title": "Zig Syntax Still Hurts My Brain",
-        "body": "I’ve been learning Zig this week, and while it’s powerful, I keep mixing up the syntax. Rust feels cozy in comparison.",
-        "date": "2025-10-05T21:48:00Z",
-        "reactions": 95,
-        "author_username": "mat_dev"
-    },
-    {
-        "title": "WebSocket Server Up and Running!",
-        "body": "Got my multiplayer prototype communicating between clients. Latency’s solid under 100ms on local — time to test online.",
-        "date": "2025-10-04T16:25:00Z",
-        "reactions": 210,
-        "author_username": "gridworks"
-    },
-    {
-        "title": "CSS Grid Just Clicked",
-        "body": "After fighting with flexbox for years, I finally understood how powerful grid templates are. Never going back.",
-        "date": "2025-10-03T09:55:00Z",
-        "reactions": 56,
-        "author_username": "frontline"
-    },
-    {
-        "title": "Procedural Map Generator Done!",
-        "body": "Implemented noise-based terrain generation and biome blending for my roguelike. Every world feels unique now!",
-        "date": "2025-10-02T23:41:00Z",
-        "reactions": 182,
-        "author_username": "astrum_creator"
-    }
-];
-var posts = [];
-
 function loadPosts() {
     // Simulate fetching the posts from server
     const storagePosts = JSON.parse(localStorage.getItem('posts')) || [];
@@ -142,6 +96,3 @@ function renderPosts() {
 }
 
 setup();
-
-loadPosts();
-renderPosts();

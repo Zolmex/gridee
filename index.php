@@ -1,6 +1,77 @@
 <?php
+date_default_timezone_set('America/Argentina/Buenos_Aires');
 session_start();
 include 'server/logout.php';
+include 'server/conexionbd.php';
+
+function cargar_posts()
+{
+    global $con;
+    conectar('gridee');
+    $sql = 'SELECT * FROM post;';
+    $result = $con->query($sql);
+    if ($result->num_rows <= 0) {
+        echo '<script>alert("NO DATA")</script>';
+        desconectar();
+        exit();
+    }
+
+    while ($fila = $result->fetch_assoc()) {
+        $sql2 = 'SELECT nombre FROM usuario WHERE id = "' . $fila['usuario_id'] . '"';
+        $result2 = mysqli_query($con, $sql2);
+
+        $postAutor = $result2->fetch_assoc()['nombre'];
+        $postTitle = $fila['title'];
+        $postBody = html_entity_decode($fila['body'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
+        $bannerPath = $fila['banner_path'];
+        $postReactions = $fila['reacciones'];
+
+        $fecha = new DateTime($fila['fecha_hora_alta']);
+        $ahora = new DateTime();
+        $diff = $fecha->diff($ahora);
+
+        $intervalo = 'Hace ';
+
+        if ($diff->y > 0) {
+            $intervalo .= $diff->y . " años";
+        } elseif ($diff->m > 0) {
+            $intervalo .= $diff->m . " meses";
+        } elseif ($diff->d > 0) {
+            $intervalo .= $diff->d . " días";
+        } elseif ($diff->h > 0) {
+            $intervalo .= $diff->h . " horas";
+        } elseif ($diff->i > 0) {
+            $intervalo .= $diff->i . " minutos";
+        } else {
+            $intervalo .= $diff->s . " segundos";
+        }
+
+        echo '
+        <article class="post-card">
+            <header class="post-title" style="background-image: url(\'/server/'.$bannerPath.'\');">
+                <p>'.$postTitle.'</p>
+            </header>
+            <section class="post-body">
+                <div class="post-description">
+                    '.$postBody.'
+                </div>
+                <div class="post-author-details">
+                    <img src="images/profile-picture.jpg" alt="Profile Picture">
+                    <div>
+                        <p>'.$postAutor.'</p>
+                        <p>'.$intervalo.'</p>
+                    </div>
+                </div>
+                <div class="post-reactions">
+                    <p>&#129505; +'.$postReactions.'</p>
+                </div>
+            </section>
+        </article>
+';
+    }
+
+    desconectar();
+}
 
 ?>
 <!DOCTYPE html>
@@ -71,8 +142,10 @@ include 'server/logout.php';
         <div class="side-menu-overlay"></div>
     </div>
     <main class="main-content">
-        <div class="article-grid" id="article-list"></div>
-        <?php if(isset($_SESSION["nombre"])): ?>
+        <div class="article-grid" id="article-list">
+            <?php cargar_posts(); ?>
+        </div>
+        <?php if (isset($_SESSION["nombre"])): ?>
         <div class="create-post-container">
             <button class="create-post-btn">
                 <svg xmlns="http://www.w3.org/2000/svg"
