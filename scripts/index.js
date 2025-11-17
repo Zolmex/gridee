@@ -4,32 +4,35 @@ function setup() {
     listenHome(); // Home button listener
     setupLogin(); // Setup login listener
 
-    const sideMenuBtn = document.querySelector('.h-side-btn');
-    const sideMenuWrapper = document.querySelector('.side-menu-wrapper');
-    const overlay = document.querySelector('.side-menu-overlay');
-    const createPostBtn = document.querySelector('.create-post-btn');
-    const sideMenuLinks = document.querySelectorAll('.side-menu-link');
+    const sideMenuBtn = $('.h-side-btn');
+    const sideMenuWrapper = $('.side-menu-wrapper');
+    const overlay = $('.side-menu-overlay');
+    const createPostBtn = $('.create-post-btn');
+    const sideMenuLinks = $('.side-menu-link');
 
-    sideMenuBtn.addEventListener('click', () => {
+    sideMenuBtn.on('click', () => {
         sideMenuWrapper.classList.toggle('active');
     });
 
-    overlay.addEventListener('click', () => {
+    overlay.on('click', () => {
         sideMenuWrapper.classList.toggle('active');
     });
 
-    createPostBtn.addEventListener('click', () => {
+    createPostBtn.on('click', () => {
         window.location.href = "/pages/draft.php";
     });
 
-    sideMenuLinks.forEach(link => link.addEventListener('click', () => {
+    $.each(sideMenuLinks, (index, link) => link.addEventListener('click', () => {
         window.location.href = "/index.php";
     }))
 }
 
 function setupLogin() {
-    document.getElementById('signin-btn').addEventListener("click", () => {
+    $('#signin-btn')?.on("click", () => {
         window.location.href = "/pages/signin.php";
+    });
+    $('#profile-btn')?.on("click", () => {
+        $('#profile-card').toggle(); // Mostrar/Esconder la tarjeta del perfil del usuario
     });
 }
 

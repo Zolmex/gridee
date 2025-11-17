@@ -4,34 +4,34 @@ include '../server/logout.php';
 include '../server/conexionbd.php';
 
 $error = '';
-$redirect = '';
 
 if (isset($_POST['username'])) {
     conectar('gridee');
     $nombre = htmlspecialchars($_POST['username']);
     $clave = htmlspecialchars($_POST['password']);
+    if (!preg_match("/\w/i", $nombre)) { // El nombre no puede tener símbolos, solo letras y numeros
+        $error = "Invalid username";
+    } else {
+        $clave_hash = password_hash($clave, PASSWORD_DEFAULT);
+        $sql = 'SELECT nombre FROM usuario WHERE nombre LIKE \'' . $nombre . '\';';
+        $result = mysqli_query($con, $sql);
 
-    $sql = 'SELECT contraseña FROM usuario WHERE nombre LIKE \'' . $nombre . '\'';
-    $result = mysqli_query($con, $sql);
-
-    if ($result->num_rows == 0) { // Login fallido
-        $error = "Nombre de usuario incorrecto.";
-    } else { // Verificar contraseña
-        $clave_hash_usuario = $result->fetch_assoc()["contraseña"];
-        if (password_verify($clave, $clave_hash_usuario)) {
-            $_SESSION["nombre"] = $nombre; // Login exitoso, guardamos los datos del usuario en una sesión nueva
-            $error = "Bienvenido de nuevo " . $nombre . "!";
-            $redirect = "../index.php";
+        if ($result->num_rows == 0) { // Seguimos con el registro
+            $sql = 'INSERT INTO usuario (nombre, contraseña) VALUES ("' . $nombre . '","' . $clave_hash . '");';
+            $result = mysqli_query($con, $sql);
+            if ($result) { // Exitosamente registrado
+                $_SESSION["nombre"] = $nombre;
+                $error = "Se ha registrado correctamente!";
+            } else {
+                $error = "Ha ocurrido un error al registrarse.";
+            }
         } else {
-            $error = "Nombre de usuario o contraseña incorrectos.";
+            $error = "Nombre de usuario duplicado.";
         }
     }
 }
 if ($error != '') {
     echo '<script>alert("' . $error . '")</script>';
-}
-if ($redirect != ''){
-    echo '<script>window.location.href = "'.$redirect.'"</script>';
 }
 
 ?>
@@ -58,10 +58,10 @@ if ($redirect != ''){
             <section class="login-panel-container">
                 <header class="login-panel-header">
                     <img src="../images/logo-full.png" alt="Gridee logo">
-                    <p>Welcome back</p>
+                    <p>Create an account</p>
                 </header>
                 <div class="login-panel">
-                    <form class="login-panel-input-grid" action="/pages/signin.php" method="post">
+                    <form class="login-panel-input-grid" action="/pages/signup.php" method="post">
                         <label for="login-panel-username">Username</label>
                         <div class="login-panel-input-field-username">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -80,10 +80,10 @@ if ($redirect != ''){
                             </svg>
                             <input id="login-panel-password" type="password" name="password" placeholder="Password">
                         </div>
-                        <button type="submit" class="login-panel-signin-button">Sign In</button>
+                        <button type="submit" class="login-panel-signin-button">Sign Up</button>
                     </form>
                     <div class="login-panel-options">
-                        <a href="/pages/signup.php">Don't have an account?</a>
+                        <a href="/pages/signin.php">Already have an account?</a>
                         <a href="#">Forgot password?</a>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ if ($redirect != ''){
         </div>
         <p>&copy; 2025 Gridee. All rights reserved.</p>
     </footer>
-    <script type="module" src="../scripts/signin.js"></script>
+    <script type="module" src="../scripts/signup.js"></script>
 </body>
 
 </html>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+include 'server/logout.php';
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -20,9 +25,20 @@
             <input class="h-search" type="text" placeholder="Search...">
         </div>
         <div>
+            <?php if (!isset($_SESSION["nombre"])): ?>
             <button id="signin-btn" class="h-signin">Sign in</button>
+            <?php else: ?>
+            <button id="profile-btn" class="h-signin"><?php echo $_SESSION["nombre"] ?></button>
+            <?php endif; ?>
         </div>
     </header>
+    <?php if (isset($_SESSION["nombre"])): ?>
+    <div id="profile-card" class="profile-card">
+        <p>Signed in as <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
+        <hr>
+        <a href="?logout=true">Sign out</a>
+    </div>
+    <?php endif; ?>
     <div class="side-menu-wrapper">
         <aside class="side-menu">
             <div class="side-menu-grid">
@@ -56,6 +72,7 @@
     </div>
     <main class="main-content">
         <div class="article-grid" id="article-list"></div>
+        <?php if(isset($_SESSION["nombre"])): ?>
         <div class="create-post-container">
             <button class="create-post-btn">
                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -66,6 +83,7 @@
                 <span>Create Post</span>
             </button>
         </div>
+        <?php endif; ?>
     </main>
     <footer>
         <div>
