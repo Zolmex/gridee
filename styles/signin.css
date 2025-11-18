@@ -203,7 +203,7 @@ footer {
   font-size: 85%;
 }
 
-footer div {
+footer nav {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: auto auto auto auto;

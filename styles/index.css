@@ -238,7 +238,7 @@ footer {
   font-size: 85%;
 }
 
-footer div {
+footer nav {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: auto auto auto auto;
@@ -433,7 +433,7 @@ body {
   border-radius: 7px;
 }
 
-.post-title p {
+.post-title h2 {
   color: white;
   font-size: 120%;
   position: absolute;

@@ -39,40 +39,40 @@ if (isset($_FILES["pfp"])) {
 </head>
 
 <body>
-    <header class="site-header">
+    <header class="site-header" role="banner">
         <div class="h-side-container">
             <img src="../images/logo-full.png" alt="Gridee logo">
         </div>
     </header>
-    <main class="login-content">
+    <main class="login-content" role="main">
         <div class="login-container">
-            <section class="login-panel-container">
+            <section class="login-panel-container" aria-labelledby="profile-picture-heading">
                 <header class="login-panel-header">
                     <img src="../images/logo-full.png" alt="Gridee logo">
-                    <p>Choose a profile picture</p>
+                    <p id="profile-picture-heading">Choose a profile picture</p>
                 </header>
                 <div class="login-panel">
-                    <form class="login-panel-input-grid" action="/pages/pfp.php" method="post" enctype="multipart/form-data">
-                        <input type="file" id="post-banner-input" name="pfp"/>
-                        <button type="submit" class="login-panel-signin-button">Update</button>
+                    <form class="login-panel-input-grid" action="/pages/pfp.php" method="post" enctype="multipart/form-data" aria-label="Profile picture upload form">
+                        <input type="file" id="post-banner-input" name="pfp" aria-label="Select profile picture file" accept="image/*"/>
+                        <button type="submit" class="login-panel-signin-button" aria-label="Upload and update profile picture">Update</button>
                     </form>
                 </div>
             </section>
         </div>
     </main>
-    <footer>
+    <footer role="contentinfo">
         <div>
-            <a href="https://instagram.com" target="_blank">
+            <a href="https://instagram.com" target="_blank" aria-label="Visit our Instagram page">
                 <img src="https://www.google.com/s2/favicons?domain=instagram.com" alt="Instagram" width="24"
                     height="24">
             </a>
-            <a href="https://youtube.com" target="_blank">
+            <a href="https://youtube.com" target="_blank" aria-label="Visit our YouTube channel">
                 <img src="https://www.google.com/s2/favicons?domain=youtube.com" alt="YouTube" width="24" height="24">
             </a>
-            <a href="https://x.com" target="_blank">
+            <a href="https://x.com" target="_blank" aria-label="Visit our X profile">
                 <img src="https://www.google.com/s2/favicons?domain=x.com" alt="X" width="24" height="24">
             </a>
-            <a href="https://linkedin.com" target="_blank">
+            <a href="https://linkedin.com" target="_blank" aria-label="Visit our LinkedIn page">
                 <img src="https://www.google.com/s2/favicons?domain=linkedin.com" alt="LinkedIn" width="24" height="24">
             </a>
         </div>

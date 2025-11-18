@@ -51,10 +51,10 @@ function cargar_post() {
     <h1 id="post-title-'.$postId.'" class="post-view__title">'.$postTitle.'</h1>
     <div class="post-view__meta">
       <div class="author">
-        <img class="author__avatar" src="'.$postAutorPic.'" alt="Avatar">
+        <img class="author__avatar" src="'.$postAutorPic.'" alt="Foto de perfil de '.$postAutor.'">
         <div class="author__info">
           <span class="author__name">'.$postAutor.'</span>
-          <time class="author__time">'.$intervalo.'</time>
+          <time class="author__time" datetime="'.$post['fecha_hora_alta'].'">'.$intervalo.'</time>
         </div>
       </div>
     </div>
@@ -64,16 +64,16 @@ function cargar_post() {
     <figcaption class="sr-only">Banner del artículo</figcaption>
   </figure>
 
-  <main class="post-view__body" id="post-body">
+  <section class="post-view__body" id="post-body" aria-label="Contenido del artículo">
     <div class="post-content">
         '.$postBody.'  
     </div>
-  </main>
+  </section>
 
   <footer class="post-view__footer">
-    <div class="reactions" aria-label="Reacciones del post">
-      <button class="reactions__btn reactions__btn--like" aria-pressed="false" aria-label="Me gusta">
-        ❤️ <span class="reactions__count">+'.$postReactions.'</span>
+    <div class="reactions" role="group" aria-label="Reacciones del post">
+      <button class="reactions__btn reactions__btn--like" aria-pressed="false" aria-label="Me gusta, actualmente '.$postReactions.' reacciones">
+        ❤️ <span class="reactions__count" aria-hidden="true">+'.$postReactions.'</span>
       </button>
     </div>
   </footer>
@@ -101,47 +101,47 @@ function cargar_post() {
 </head>
 
 <body>
-    <header class="site-header">
+    <header class="site-header" role="banner">
         <div class="h-side-container">
             <img src="../images/logo-full.png" alt="Gridee logo">
         </div>
-        <div>
+        <nav aria-label="Navegación de usuario">
             <?php if (!isset($_SESSION["nombre"])): ?>
-            <button id="signin-btn" class="h-signin">Sign in</button>
+            <button id="signin-btn" class="h-signin" aria-label="Iniciar sesión">Sign in</button>
             <?php else: ?>
-            <button id="profile-btn" class="h-signin"><?php echo $_SESSION["nombre"] ?></button>
+            <button id="profile-btn" class="h-signin" aria-expanded="false" aria-haspopup="true" aria-controls="profile-card"><?php echo $_SESSION["nombre"] ?></button>
             <?php endif; ?>
-        </div>
+        </nav>
     </header>
     <?php if (isset($_SESSION["nombre"])): ?>
-    <div id="profile-card" class="profile-card">
+    <div id="profile-card" class="profile-card" role="menu" aria-label="Menú de perfil">
         <p>Signed in as <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
-        <hr>
-        <a href="pfp.php">Change Profile Picture</a>
-        <a href="?logout=true">Sign out</a>
+        <hr role="separator">
+        <a href="pfp.php" role="menuitem">Change Profile Picture</a>
+        <a href="?logout=true" role="menuitem">Sign out</a>
     </div>
     <?php endif; ?>
-    <main class="main-content">
+    <main class="main-content" role="main">
         <div class="article-view" id="article-view">
             <?php cargar_post(); ?>
         </div>
     </main>
-    <footer>
-        <div>
-            <a href="https://instagram.com" target="_blank">
-                <img src="https://www.google.com/s2/favicons?domain=instagram.com" alt="Instagram" width="24"
+    <footer role="contentinfo">
+        <nav aria-label="Redes sociales">
+            <a href="https://instagram.com" target="_blank" aria-label="Visita nuestro Instagram">
+                <img src="https://www.google.com/s2/favicons?domain=instagram.com" alt="" width="24"
                     height="24">
             </a>
-            <a href="https://youtube.com" target="_blank">
-                <img src="https://www.google.com/s2/favicons?domain=youtube.com" alt="YouTube" width="24" height="24">
+            <a href="https://youtube.com" target="_blank" aria-label="Visita nuestro YouTube">
+                <img src="https://www.google.com/s2/favicons?domain=youtube.com" alt="" width="24" height="24">
             </a>
-            <a href="https://x.com" target="_blank">
-                <img src="https://www.google.com/s2/favicons?domain=x.com" alt="X" width="24" height="24">
+            <a href="https://x.com" target="_blank" aria-label="Visita nuestro X">
+                <img src="https://www.google.com/s2/favicons?domain=x.com" alt="" width="24" height="24">
             </a>
-            <a href="https://linkedin.com" target="_blank">
-                <img src="https://www.google.com/s2/favicons?domain=linkedin.com" alt="LinkedIn" width="24" height="24">
+            <a href="https://linkedin.com" target="_blank" aria-label="Visita nuestro LinkedIn">
+                <img src="https://www.google.com/s2/favicons?domain=linkedin.com" alt="" width="24" height="24">
             </a>
-        </div>
+        </nav>
         <p>&copy; 2025 Gridee. All rights reserved.</p>
     </footer>
     <script type="module" src="../scripts/post.js"></script>
