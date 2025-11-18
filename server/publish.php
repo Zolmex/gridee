@@ -1,4 +1,5 @@
 <?php
+require_once '../vendor/autoload.php';
 session_start();
 include 'conexionbd.php';
 include 'logout.php';
@@ -10,8 +11,13 @@ if (!isset($_SESSION['nombre'])) {
 }
 
 if (isset($_POST["title"]) && isset($_POST["body"])) {
+    $config = HTMLPurifier_Config::createDefault(); // Configurar los tags permitidos con HTMLPurifier
+    $config->set('HTML.Allowed', 'p,br,strong,em,u,a[href],ul,ol,li,h1,h2,h3,img[src|alt]');
+    $config->set('HTML.AllowedAttributes', 'a.href,img.src,img.alt,*.style');
+    $purifier = new HTMLPurifier($config);
+
     $postTitle = htmlspecialchars($_POST["title"]);
-    $postBody = htmlspecialchars($_POST["body"]);
+    $postBody = htmlspecialchars($purifier->purify($_POST["body"])); // Purificar el código HTML
     $targetFile = guardar_imagen($_FILES["banner"]); // Guardamos la imagen y obtenemos la dirección del archivo
 
     global $con;
