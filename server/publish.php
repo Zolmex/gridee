@@ -12,11 +12,11 @@ if (!isset($_SESSION['nombre'])) {
 if (isset($_POST["title"]) && isset($_POST["body"])) {
     $postTitle = htmlspecialchars($_POST["title"]);
     $postBody = htmlspecialchars($_POST["body"]);
-    $targetFile = guardar_imagen($_FILES["banner"]);
+    $targetFile = guardar_imagen($_FILES["banner"]); // Guardamos la imagen y obtenemos la dirección del archivo
 
     global $con;
     conectar('gridee');
-    $sql = 'INSERT INTO post (usuario_id, title, body, banner_path) VALUES ("'.$_SESSION['id'].'", "'.$postTitle.'", "'.$postBody.'", "'.$targetFile.'")';
+    $sql = 'INSERT INTO post (usuario_id, title, body, banner_path) VALUES ("'.$_SESSION['id'].'", "'.$postTitle.'", "'.$postBody.'", "'.$targetFile.'")'; // Guardamos los datos de la publiación
     $result = mysqli_query($con, $sql);
     if ($result) { // Exito
         echo "<script>alert('Post realizado con éxito!.')</script>";
