@@ -32,10 +32,12 @@ function cargar_post() {
     $result = $con->query($sql);
     if ($result->num_rows > 0) { // Crear elemento
         $post = $result->fetch_assoc();
-        $sql2 = 'SELECT nombre FROM usuario WHERE id = "' . $post['usuario_id'] . '"';
+        $sql2 = 'SELECT nombre, picture FROM usuario WHERE id = "' . $post['usuario_id'] . '"';
         $result2 = mysqli_query($con, $sql2);
+        $autor = $result2->fetch_assoc();
 
-        $postAutor = $result2->fetch_assoc()['nombre'];
+        $postAutor = $autor['nombre'];
+        $postAutorPic = $autor['picture'];
         $postId = $post['id'];
         $postTitle = $post['title'];
         $postBody = html_entity_decode($post['body'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
@@ -49,7 +51,7 @@ function cargar_post() {
     <h1 id="post-title-'.$postId.'" class="post-view__title">'.$postTitle.'</h1>
     <div class="post-view__meta">
       <div class="author">
-        <img class="author__avatar" src="/images/profile-picture.jpg" alt="Avatar">
+        <img class="author__avatar" src="'.$postAutorPic.'" alt="Avatar">
         <div class="author__info">
           <span class="author__name">'.$postAutor.'</span>
           <time class="author__time">'.$intervalo.'</time>
@@ -58,7 +60,7 @@ function cargar_post() {
     </div>
   </header>
 
-  <figure class="post-view__banner" role="img" aria-label="Banner del artículo" style="background-image: url(\'/server/'.$bannerPath.'\')">
+  <figure class="post-view__banner" role="img" aria-label="Banner del artículo" style="background-image: url(\''.$bannerPath.'\')">
     <figcaption class="sr-only">Banner del artículo</figcaption>
   </figure>
 
@@ -115,6 +117,7 @@ function cargar_post() {
     <div id="profile-card" class="profile-card">
         <p>Signed in as <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
         <hr>
+        <a href="pfp.php">Change Profile Picture</a>
         <a href="?logout=true">Sign out</a>
     </div>
     <?php endif; ?>

@@ -4,6 +4,7 @@ include '../server/logout.php';
 include '../server/conexionbd.php';
 
 $error = '';
+$redirect = '';
 
 if (isset($_POST['username'])) {
     conectar('gridee');
@@ -20,8 +21,13 @@ if (isset($_POST['username'])) {
             $sql = 'INSERT INTO usuario (nombre, contraseña) VALUES ("' . $nombre . '","' . $clave_hash . '");';
             $result = mysqli_query($con, $sql);
             if ($result) { // Exitosamente registrado
+                $sql = 'SELECT id FROM usuario WHERE nombre LIKE \'' . $nombre . '\''; // Obtener el ID del nuevo usuario
+                $result = mysqli_query($con, $sql);
+
                 $_SESSION["nombre"] = $nombre;
+                $_SESSION["id"] = $result->fetch_assoc()["id"];
                 $error = "Se ha registrado correctamente!";
+                $redirect = '/index.php';
             } else {
                 $error = "Ha ocurrido un error al registrarse.";
             }
@@ -34,6 +40,9 @@ if (isset($_POST['username'])) {
 if ($error != '') {
     echo '<script>alert("' . $error . '")</script>';
 }
+if ($redirect != ''){
+    header('Location: '.$redirect);
+}
 
 ?>
 <!DOCTYPE html>
@@ -43,7 +52,7 @@ if ($error != '') {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/signin.css">
-    <title>Gridee - Sign in</title>
+    <title>Gridee - Sign Up</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>

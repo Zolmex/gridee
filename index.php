@@ -14,14 +14,16 @@ function cargar_posts()
     if ($result->num_rows <= 0) {
         echo '<script>alert("NO DATA")</script>';
         desconectar();
-        exit();
+        return;
     }
 
     while ($fila = $result->fetch_assoc()) {
-        $sql2 = 'SELECT nombre FROM usuario WHERE id = "' . $fila['usuario_id'] . '"';
+        $sql2 = 'SELECT nombre, picture FROM usuario WHERE id = "' . $fila['usuario_id'] . '"';
         $result2 = mysqli_query($con, $sql2);
+        $autor = $result2->fetch_assoc();
 
-        $postAutor = $result2->fetch_assoc()['nombre'];
+        $postAutor = $autor['nombre'];
+        $postAutorPic = $autor['picture'];
         $postTitle = $fila['title'];
         $postBody = html_entity_decode($fila['body'], ENT_QUOTES | ENT_HTML5, 'UTF-8');
         $bannerPath = $fila['banner_path'];
@@ -29,23 +31,23 @@ function cargar_posts()
         $intervalo = obtenerIntervalo($fila['fecha_hora_alta']);
 
         echo '
-        <article id="post-'.$fila["id"].'" class="post-card">
-            <header class="post-title" style="background-image: url(\'/server/'.$bannerPath.'\');">
-                <p>'.$postTitle.'</p>
+        <article id="post-' . $fila["id"] . '" class="post-card">
+            <header class="post-title" style="background-image: url(\'' . $bannerPath . '\');">
+                <p>' . $postTitle . '</p>
             </header>
             <section class="post-body">
                 <div class="post-description">
-                    '.$postBody.'
+                    ' . $postBody . '
                 </div>
                 <div class="post-author-details">
-                    <img src="images/profile-picture.jpg" alt="Profile Picture">
+                    <img src="' . $postAutorPic . '" alt="Profile Picture">
                     <div>
-                        <p>'.$postAutor.'</p>
-                        <p>'.$intervalo.'</p>
+                        <p>' . $postAutor . '</p>
+                        <p>' . $intervalo . '</p>
                     </div>
                 </div>
                 <div class="post-reactions">
-                    <p>&#129505; +'.$postReactions.'</p>
+                    <p>&#129505; +' . $postReactions . '</p>
                 </div>
             </section>
         </article>
@@ -89,6 +91,7 @@ function cargar_posts()
     <div id="profile-card" class="profile-card">
         <p>Signed in as <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
         <hr>
+        <a href="/pages/pfp.php">Change Profile Picture</a>
         <a href="?logout=true">Sign out</a>
     </div>
     <?php endif; ?>
@@ -99,25 +102,13 @@ function cargar_posts()
                     <svg xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                         <path
-                            d="M416 224C398.3 224 384 209.7 384 192C384 174.3 398.3 160 416 160L576 160C593.7 160 608 174.3 608 192L608 352C608 369.7 593.7 384 576 384C558.3 384 544 369.7 544 352L544 269.3L374.6 438.7C362.1 451.2 341.8 451.2 329.3 438.7L224 333.3L86.6 470.6C74.1 483.1 53.8 483.1 41.3 470.6C28.8 458.1 28.8 437.8 41.3 425.3L201.3 265.3C213.8 252.8 234.1 252.8 246.6 265.3L352 370.7L498.7 224L416 224z" />
-                    </svg>
-                    <p>Trending</p>
-                </div>
-                <div class="side-menu-link">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                        <path
                             d="M341.5 45.1C337.4 37.1 329.1 32 320.1 32C311.1 32 302.8 37.1 298.7 45.1L225.1 189.3L65.2 214.7C56.3 216.1 48.9 222.4 46.1 231C43.3 239.6 45.6 249 51.9 255.4L166.3 369.9L141.1 529.8C139.7 538.7 143.4 547.7 150.7 553C158 558.3 167.6 559.1 175.7 555L320.1 481.6L464.4 555C472.4 559.1 482.1 558.3 489.4 553C496.7 547.7 500.4 538.8 499 529.8L473.7 369.9L588.1 255.4C594.5 249 596.7 239.6 593.9 231C591.1 222.4 583.8 216.1 574.8 214.7L415 189.3L341.5 45.1z" />
                     </svg>
                     <p>Most reacted</p>
                 </div>
                 <div class="side-menu-link">
-                    <svg xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
-                        <path
-                            d="M320 96C239.2 96 174.5 132.8 127.4 176.6C80.6 220.1 49.3 272 34.4 307.7C31.1 315.6 31.1 324.4 34.4 332.3C49.3 368 80.6 420 127.4 463.4C174.5 507.1 239.2 544 320 544C400.8 544 465.5 507.2 512.6 463.4C559.4 419.9 590.7 368 605.6 332.3C608.9 324.4 608.9 315.6 605.6 307.7C590.7 272 559.4 220 512.6 176.6C465.5 132.9 400.8 96 320 96zM176 320C176 240.5 240.5 176 320 176C399.5 176 464 240.5 464 320C464 399.5 399.5 464 320 464C240.5 464 176 399.5 176 320zM320 256C320 291.3 291.3 320 256 320C244.5 320 233.7 317 224.3 311.6C223.3 322.5 224.2 333.7 227.2 344.8C240.9 396 293.6 426.4 344.8 412.7C396 399 426.4 346.3 412.7 295.1C400.5 249.4 357.2 220.3 311.6 224.3C316.9 233.6 320 244.4 320 256z" />
-                    </svg>
-                    <p>Most watched</p>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/></svg>
+                    <p>Newest</p>
                 </div>
             </div>
         </aside>

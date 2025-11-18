@@ -34,6 +34,7 @@ if (!isset($_SESSION['nombre'])) {
     <div id="profile-card" class="profile-card">
         <p>Signed in as <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
         <hr>
+        <a href="pfp.php">Change Profile Picture</a>
         <a href="?logout=true">Sign out</a>
     </div>
     <main class="draft-content">
