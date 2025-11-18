@@ -112,6 +112,7 @@ input {
   min-width: 60px;
   margin-right: 5px;
   background: linear-gradient(135deg, #5f94eb, #4179f3);
+  padding: 5px;
   color: white;
   border-style: none;
   border-radius: 10px;
@@ -158,6 +159,31 @@ input {
 .h-side-btn:hover {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
+}
+
+.profile-card {
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background: #292E35;
+  padding: 15px;
+  width: 180px;
+  border-radius: 10px;
+  -webkit-box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+          box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
+  display: none;
+  z-index: 100;
+}
+
+.profile-card a {
+  display: block;
+  padding: 8px 0;
+  color: #E5F0FF;
+  text-decoration: none;
+}
+
+.profile-card a:hover {
+  color: #B0B9C4;
 }
 
 footer {

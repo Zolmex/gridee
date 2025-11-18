@@ -1,5 +1,7 @@
 import { listenHome } from "./homeButton.js";
 
+var bannerFile = null;
+
 import { ClassicEditor, Essentials, Bold, Italic, Font, Paragraph } from '../ckeditor/ckeditor5/ckeditor5.js';
 
 ClassicEditor
@@ -20,15 +22,36 @@ ClassicEditor
     });
 
 function setup() {
-    const backBtn = document.getElementById('draft-panel-back-btn');
-    const publishBtn = document.getElementById('publish-btn');
+    const backBtn = $('#draft-panel-back-btn');
+    const bannnerInput = $('#post-banner-input');
 
-    backBtn.addEventListener('click', () => {
-        window.location.href = "/index.html";
+    bannnerInput.change((event) => { // Cuando el usuario selecciones una imagen guardamos el archivo en una variable global
+        var file = event.target.files[0];
+        if (file != null) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                bannerFile = e.target.result;
+            };
+
+            reader.onerror = (e) => {
+                console.error('Error reading file:', e.target.error);
+            };
+
+            reader.readAsDataURL(file); // Leer archivo
+            console.info("Archivo subido correctamente.");
+        }
     });
-    publishBtn.addEventListener('click', submitPost);
+
+    backBtn.on('click', () => {
+        window.location.href = "/index.php";
+    });
+    $('#publish-form').on('submit', submitPost);
 
     listenHome(); // Home button listener
+
+    $('#profile-btn')?.on("click", () => {
+        $('#profile-card').toggle(); // Mostrar/Esconder la tarjeta del perfil del usuario
+    });
 }
 
 function randomInt(min, max) {
@@ -36,19 +59,8 @@ function randomInt(min, max) {
 }
 
 function submitPost() {
-    const storagePosts = JSON.parse(localStorage.getItem("posts")) || [];
-    const postTitle = document.getElementById('post-title-input').value;
-    const postBody = document.getElementById('post-body-input').value;
-    const post = {
-        "title": postTitle,
-        "body": postBody,
-        "date": new Date().toISOString(),
-        "reactions": randomInt(0, 500),
-        "author_username": "unknown"
-    };
-    storagePosts.push(post);
-    localStorage.setItem("posts", JSON.stringify(storagePosts));
-    window.location.href = "/index.html";
+    const postBody = window.editor.getData();
+    $('#post-body-input').val(postBody);
 }
 
 setup();

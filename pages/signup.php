@@ -1,3 +1,50 @@
+<?php
+session_start();
+include '../server/logout.php';
+include '../server/conexionbd.php';
+
+$error = '';
+$redirect = '';
+
+if (isset($_POST['username'])) {
+    conectar('gridee');
+    $nombre = htmlspecialchars($_POST['username']);
+    $clave = htmlspecialchars($_POST['password']);
+    if (!preg_match("/\w/i", $nombre)) { // El nombre no puede tener símbolos, solo letras y numeros
+        $error = "Invalid username";
+    } else {
+        $clave_hash = password_hash($clave, PASSWORD_DEFAULT);
+        $sql = 'SELECT nombre FROM usuario WHERE nombre LIKE \'' . $nombre . '\';';
+        $result = mysqli_query($con, $sql);
+
+        if ($result->num_rows == 0) { // Seguimos con el registro
+            $sql = 'INSERT INTO usuario (nombre, contraseña) VALUES ("' . $nombre . '","' . $clave_hash . '");';
+            $result = mysqli_query($con, $sql);
+            if ($result) { // Exitosamente registrado
+                $sql = 'SELECT id FROM usuario WHERE nombre LIKE \'' . $nombre . '\''; // Obtener el ID del nuevo usuario
+                $result = mysqli_query($con, $sql);
+
+                $_SESSION["nombre"] = $nombre;
+                $_SESSION["id"] = $result->fetch_assoc()["id"];
+                $error = "Se ha registrado correctamente!";
+                $redirect = '/index.php';
+            } else {
+                $error = "Ha ocurrido un error al registrarse.";
+            }
+        } else {
+            $error = "Nombre de usuario duplicado.";
+        }
+    }
+    desconectar();
+}
+if ($error != '') {
+    echo '<script>alert("' . $error . '")</script>';
+}
+if ($redirect != ''){
+    header('Location: '.$redirect);
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -5,8 +52,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../styles/signin.css">
-    <title>Gridee - Sign in</title>
+    <title>Gridee - Sign Up</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -20,10 +68,10 @@
             <section class="login-panel-container">
                 <header class="login-panel-header">
                     <img src="../images/logo-full.png" alt="Gridee logo">
-                    <p>Welcome back</p>
+                    <p>Create an account</p>
                 </header>
                 <div class="login-panel">
-                    <form class="login-panel-input-grid">
+                    <form class="login-panel-input-grid" action="/pages/signup.php" method="post">
                         <label for="login-panel-username">Username</label>
                         <div class="login-panel-input-field-username">
                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -31,7 +79,7 @@
                                 <path
                                     d="M320 312C386.3 312 440 258.3 440 192C440 125.7 386.3 72 320 72C253.7 72 200 125.7 200 192C200 258.3 253.7 312 320 312zM290.3 368C191.8 368 112 447.8 112 546.3C112 562.7 125.3 576 141.7 576L498.3 576C514.7 576 528 562.7 528 546.3C528 447.8 448.2 368 349.7 368L290.3 368z" />
                             </svg>
-                            <input id="login-panel-username" type="text" placeholder="Username">
+                            <input id="login-panel-username" name="username" type="text" placeholder="Username">
                         </div>
                         <label for="login-panel-password">Password</label>
                         <div class="login-panel-input-field-password">
@@ -40,12 +88,12 @@
                                 <path
                                     d="M256 160L256 224L384 224L384 160C384 124.7 355.3 96 320 96C284.7 96 256 124.7 256 160zM192 224L192 160C192 89.3 249.3 32 320 32C390.7 32 448 89.3 448 160L448 224C483.3 224 512 252.7 512 288L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 288C128 252.7 156.7 224 192 224z" />
                             </svg>
-                            <input id="login-panel-password" type="password" placeholder="Password">
+                            <input id="login-panel-password" type="password" name="password" placeholder="Password">
                         </div>
+                        <button type="submit" class="login-panel-signin-button">Sign Up</button>
                     </form>
-                    <button class="login-panel-signin-button">Sign In</button>
                     <div class="login-panel-options">
-                        <a href="#">Don't have an account?</a>
+                        <a href="/pages/signin.php">Already have an account?</a>
                         <a href="#">Forgot password?</a>
                     </div>
                 </div>
@@ -70,7 +118,7 @@
         </div>
         <p>&copy; 2025 Gridee. All rights reserved.</p>
     </footer>
-    <script type="module" src="../scripts/signin.js"></script>
+    <script type="module" src="../scripts/signup.js"></script>
 </body>
 
 </html>

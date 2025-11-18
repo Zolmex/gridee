@@ -1,3 +1,13 @@
+<?php
+session_start();
+include '../server/logout.php';
+
+if (!isset($_SESSION['nombre'])) {
+    echo '<script>alert("No permitido.")</script>';
+    header('Location: /index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -8,6 +18,8 @@
     <link rel="stylesheet" href="../ckeditor/ckeditor5/ckeditor5.css">
     <title>Gridee - Draft new post</title>
     <link rel="icon" type="image/x-icon" href="../favicon.ico">
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 
 <body>
@@ -15,7 +27,16 @@
         <div class="h-side-container">
             <img src="../images/logo-full.png" alt="Gridee logo">
         </div>
+        <div>
+            <button id="profile-btn" class="h-signin"><?php echo $_SESSION["nombre"] ?></button>
+        </div>
     </header>
+    <div id="profile-card" class="profile-card">
+        <p>Signed in as <strong><?php echo $_SESSION["nombre"]; ?></strong></p>
+        <hr>
+        <a href="pfp.php">Change Profile Picture</a>
+        <a href="?logout=true">Sign out</a>
+    </div>
     <main class="draft-content">
         <div class="draft-container">
             <section class="draft-panel">
@@ -28,19 +49,21 @@
                     </svg>
                 </header>
                 <section class="draft-panel-edit">
-                    <div class="draft-panel-title-input-container">
-                        <input type="text" id="post-title-input" placeholder="Post title...">
-                        <a>Link preview:</a>
-                        <a id="title-link-preview"></a>
-                    </div>
-                    <button class="draft-panel-banner-input">+ Add banner image</button>
-                    <div id="editor">
-                        <p>Hello from CKEditor 5!</p>
-                    </div>
-                    <div class="draft-panel-options">
-                        <button class="draft-panel-option-button">Preview</button>
-                        <button class="draft-panel-option-button" id="publish-btn">Publish</button>
-                    </div>
+                    <form id="publish-form" action="../server/publish.php" method="post" enctype="multipart/form-data">
+                        <div class="draft-panel-title-input-container">
+                            <input type="text" id="post-title-input" name="title" placeholder="Post title...">
+                            <a>Link preview:</a>
+                            <a id="title-link-preview"></a>
+                        </div>
+                        <input type="file" id="post-banner-input" name="banner"/>
+                        <input type="hidden" id="post-body-input" name="body"/>
+                        <div id="editor">
+                            <p>Hello from CKEditor 5!</p>
+                        </div>
+                        <div class="draft-panel-options">
+                            <input type="submit" class="draft-panel-option-button" id="publish-btn" value="Publish"/>
+                        </div>
+                    </form>
                 </section>
             </section>
         </div>
