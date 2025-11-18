@@ -33,6 +33,20 @@ function setup() {
     $.each(sideMenuLinks, (index, link) => link.addEventListener('click', () => {
         window.location.href = "/index.php";
     }));
+
+    $("#h-search").on("keyup", function () { // Cuando el usuario escribe en el input de busqueda, actualizamos las publicaciones que se muestren
+        let texto = $(this).val().toLowerCase();
+    
+        $("article").each(function () {
+            let titulo = $(this).find("header").find("h2").text().toLowerCase();
+    
+            if (titulo.includes(texto)) {
+                $(this).show();
+            } else {
+                $(this).hide();
+            }
+        });
+    });
 }
 
 function setupLogin() {

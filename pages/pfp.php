@@ -61,7 +61,7 @@ if (isset($_FILES["pfp"])) {
         </div>
     </main>
     <footer role="contentinfo">
-        <div>
+        <nav>
             <a href="https://instagram.com" target="_blank" aria-label="Visit our Instagram page">
                 <img src="https://www.google.com/s2/favicons?domain=instagram.com" alt="Instagram" width="24"
                     height="24">
@@ -75,7 +75,7 @@ if (isset($_FILES["pfp"])) {
             <a href="https://linkedin.com" target="_blank" aria-label="Visit our LinkedIn page">
                 <img src="https://www.google.com/s2/favicons?domain=linkedin.com" alt="LinkedIn" width="24" height="24">
             </a>
-        </div>
+        </nav>
         <p>&copy; 2025 Gridee. All rights reserved.</p>
     </footer>
     <script type="module" src="../scripts/pfp.js"></script>

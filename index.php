@@ -5,11 +5,30 @@ include 'server/logout.php';
 include 'server/conexionbd.php';
 include 'server/util.php';
 
+global $filtro;
+$filtro = 0;
+
+if (isset($_GET['filtro'])) {
+    $filtro = (int) $_GET['filtro']; // Guardar en la variable local el filtro seleccionado
+}
+
 function cargar_posts()
 {
-    global $con;
+    global $con, $filtro;
     conectar('gridee');
-    $sql = 'SELECT * FROM post;';
+    $sql = '';
+    switch ($filtro) {
+        case 1: // Ordernar del más reaccionado al menos reaccionado
+            $sql = 'SELECT * FROM post ORDER BY reacciones DESC;';
+            break;
+        case 2: // Ordenar del más reciente al más antiguo
+            $sql = 'SELECT * FROM post ORDER BY fecha_hora_alta DESC;';
+            break;
+        default: // Ordenar del más antiguo al más reciente
+            $sql = 'SELECT * FROM post;';
+            break;
+    }
+
     $result = $con->query($sql);
     if ($result->num_rows <= 0) {
         echo '<script>alert("NO DATA")</script>';
@@ -78,7 +97,7 @@ function cargar_posts()
             <img src="images/logo-full.png" alt="Gridee logo">
         </div>
         <div>
-            <input class="h-search" type="search" placeholder="Search..." aria-label="Buscar posts">
+            <input id="h-search" class="h-search" type="search" placeholder="Search..." aria-label="Buscar posts">
         </div>
         <nav aria-label="Navegación de usuario">
             <?php if (!isset($_SESSION["nombre"])): ?>
@@ -99,7 +118,7 @@ function cargar_posts()
     <div class="side-menu-wrapper">
         <aside id="side-menu" class="side-menu" role="navigation" aria-label="Menú de filtros">
             <nav class="side-menu-grid">
-                <a href="#" class="side-menu-link" aria-label="Filtrar por posts más reaccionados">
+                <a href="?filtro=1" class="side-menu-link" aria-label="Filtrar por posts más reaccionados">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"
                         viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.-->
                         <path
@@ -107,7 +126,7 @@ function cargar_posts()
                     </svg>
                     <p>Most reacted</p>
                 </a>
-                <a href="#" class="side-menu-link" aria-label="Filtrar por posts más recientes">
+                <a href="?filtro=2" class="side-menu-link" aria-label="Filtrar por posts más recientes">
                     <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" viewBox="0 0 640 640"><!--!Font Awesome Free v7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M224 64C206.3 64 192 78.3 192 96L192 128L160 128C124.7 128 96 156.7 96 192L96 240L544 240L544 192C544 156.7 515.3 128 480 128L448 128L448 96C448 78.3 433.7 64 416 64C398.3 64 384 78.3 384 96L384 128L256 128L256 96C256 78.3 241.7 64 224 64zM96 288L96 480C96 515.3 124.7 544 160 544L480 544C515.3 544 544 515.3 544 480L544 288L96 288z"/></svg>
                     <p>Newest</p>
                 </a>

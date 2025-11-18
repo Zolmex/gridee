@@ -78,7 +78,7 @@ if (!isset($_SESSION['nombre'])) {
     </main>
 
     <footer role="contentinfo">
-        <div>
+        <nav>
             <a href="https://instagram.com" target="_blank" aria-label="Instagram">
                 <img src="https://www.google.com/s2/favicons?domain=instagram.com" alt="Instagram" width="24" height="24">
             </a>
@@ -91,7 +91,7 @@ if (!isset($_SESSION['nombre'])) {
             <a href="https://linkedin.com" target="_blank" aria-label="LinkedIn">
                 <img src="https://www.google.com/s2/favicons?domain=linkedin.com" alt="LinkedIn" width="24" height="24">
             </a>
-        </div>
+        </nav>
         <p>&copy; 2025 Gridee. All rights reserved.</p>
     </footer>
 
